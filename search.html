@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Visualizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#E7EFC7',
+            primary: '#8A784E',
+            secondary: '#AEC8A4',
+            textDark: '#3B3B1A',
+            highlight: '#4CAF50'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/search.css" />
+</head>
+<body class="bg-background text-textDark p-6 min-h-screen">
+  <button onclick="window.location.href='index.html'" class="back-btn">← Back</button>
+  <h1 class="text-3xl font-bold mb-4">Search Visualizer</h1>
+
+  <input type="text" id="arrayInput" placeholder="Enter comma-separated numbers" class="input" />
+  <input type="number" id="targetInput" placeholder="Target number" class="input mt-2" />
+  <div class="flex gap-4 mt-2">
+    <button onclick="generateRandomArray()" class="btn">Generate Random Array</button>
+    <button onclick="startLinearSearch()" class="btn">Linear Search</button>
+    <button onclick="startBinarySearch()" class="btn">Binary Search</button>
+  </div>
+
+  <div id="visualizer" class="visualizer"></div>
+
+  <script src="js/search.js"></script>
+</body>
+</html>

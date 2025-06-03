@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DSA Visualizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#E7EFC7',
+            primary: '#8A784E',
+            secondary: '#AEC8A4',
+            textDark: '#3B3B1A'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body class="bg-background text-textDark min-h-screen flex flex-col items-center justify-center p-6">
+  <h1 class="text-4xl font-bold mb-8">DSA Visualizer</h1>
+  <div class="flex gap-6">
+    <a href="search.html" class="btn">Search</a>
+    <a href="sort.html" class="btn">Sort</a>
+  </div>
+</body>
+</html>

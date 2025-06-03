@@ -1,0 +1,41 @@
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #8A784E;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.btn:hover {
+  background-color: #AEC8A4;
+}
+.visualizer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.box {
+  padding: 1rem;
+  background-color: #AEC8A4;
+  border-radius: 8px;
+  font-weight: bold;
+  min-width: 40px;
+  text-align: center;
+}
+.back-btn {
+  margin-bottom: 1rem;
+  background-color: #8A784E;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
