@@ -1,7 +1,7 @@
 const COLORS = {
   normal: "#AEC8A4",
   active: "#8A784E",
-  sorted: "#4CAF50",
+  sorted: "#4CAF50"
 };
 
 let boxes = [];
@@ -11,10 +11,10 @@ function renderArray(array) {
   container.innerHTML = "";
   boxes = [];
 
-  array.forEach((num) => {
+  array.forEach(value => {
     const box = document.createElement("div");
     box.className = "visual-box";
-    box.innerText = num;
+    box.innerText = value;
     container.appendChild(box);
     boxes.push(box);
   });
@@ -24,13 +24,13 @@ async function swap(i, j) {
   boxes[i].style.backgroundColor = COLORS.active;
   boxes[j].style.backgroundColor = COLORS.active;
 
-  await new Promise((res) => setTimeout(res, 300));
+  await new Promise(res => setTimeout(res, 300));
 
   const temp = boxes[i].innerText;
   boxes[i].innerText = boxes[j].innerText;
   boxes[j].innerText = temp;
 
-  await new Promise((res) => setTimeout(res, 300));
+  await new Promise(res => setTimeout(res, 300));
 
   boxes[i].style.backgroundColor = COLORS.normal;
   boxes[j].style.backgroundColor = COLORS.normal;
@@ -44,13 +44,16 @@ function generateRandomArray() {
 
 async function startSorting() {
   const input = document.getElementById("arrayInput").value;
-  const algo = document.getElementById("algorithm").value;
-  if (!input) return alert("Enter numbers");
+  const type = document.getElementById("algorithm").value;
+  if (!input) {
+    alert("Enter numbers");
+    return;
+  }
 
-  const array = input.split(",").map((x) => parseInt(x.trim()));
+  const array = input.split(",").map(n => parseInt(n.trim()));
   renderArray(array);
 
-  switch (algo) {
+  switch (type) {
     case "bubble": await bubbleSort(array); break;
     case "selection": await selectionSort(array); break;
     case "insertion": await insertionSort(array); break;
@@ -59,18 +62,12 @@ async function startSorting() {
     case "heap": await heapSort(array); break;
   }
 
-  boxes.forEach((box) => (box.style.backgroundColor = COLORS.sorted));
+  boxes.forEach(box => box.style.backgroundColor = COLORS.sorted);
 }
 
-// Sorting Algorithms (same as before, ask if you'd like me to paste them again)
-
-
-// ----- Sorting Algorithms -----
-
 async function bubbleSort(arr) {
-  const n = arr.length;
-  for (let i = 0; i < n; ++i) {
-    for (let j = 0; j < n - i - 1; ++j) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
       if (arr[j] > arr[j + 1]) {
         await swap(j, j + 1);
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
@@ -80,11 +77,12 @@ async function bubbleSort(arr) {
 }
 
 async function selectionSort(arr) {
-  const n = arr.length;
-  for (let i = 0; i < n; ++i) {
+  for (let i = 0; i < arr.length; i++) {
     let min = i;
-    for (let j = i + 1; j < n; ++j) {
-      if (arr[j] < arr[min]) min = j;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[min]) {
+        min = j;
+      }
     }
     if (min !== i) {
       await swap(i, min);
@@ -94,8 +92,7 @@ async function selectionSort(arr) {
 }
 
 async function insertionSort(arr) {
-  const n = arr.length;
-  for (let i = 1; i < n; i++) {
+  for (let i = 1; i < arr.length; i++) {
     let key = arr[i];
     let j = i - 1;
     while (j >= 0 && arr[j] > key) {
@@ -109,7 +106,6 @@ async function insertionSort(arr) {
 
 async function mergeSort(arr, l, r) {
   if (l >= r) return;
-
   const mid = Math.floor((l + r) / 2);
   await mergeSort(arr, l, mid);
   await mergeSort(arr, mid + 1, r);
@@ -119,24 +115,22 @@ async function mergeSort(arr, l, r) {
 async function merge(arr, l, mid, r) {
   const left = arr.slice(l, mid + 1);
   const right = arr.slice(mid + 1, r + 1);
-  let i = 0,
-    j = 0,
-    k = l;
+  let i = 0, j = 0, k = l;
 
   while (i < left.length && j < right.length) {
     if (left[i] <= right[j]) {
       arr[k] = left[i];
-      bars[k].style.height = `${(left[i] / Math.max(...arr)) * 100}%`;
-      bars[k].style.backgroundColor = COLORS.active;
-      await delay(150);
-      bars[k].style.backgroundColor = COLORS.normal;
+      boxes[k].innerText = left[i];
+      boxes[k].style.backgroundColor = COLORS.active;
+      await new Promise(res => setTimeout(res, 150));
+      boxes[k].style.backgroundColor = COLORS.normal;
       i++;
     } else {
       arr[k] = right[j];
-      bars[k].style.height = `${(right[j] / Math.max(...arr)) * 100}%`;
-      bars[k].style.backgroundColor = COLORS.active;
-      await delay(150);
-      bars[k].style.backgroundColor = COLORS.normal;
+      boxes[k].innerText = right[j];
+      boxes[k].style.backgroundColor = COLORS.active;
+      await new Promise(res => setTimeout(res, 150));
+      boxes[k].style.backgroundColor = COLORS.normal;
       j++;
     }
     k++;
@@ -144,20 +138,20 @@ async function merge(arr, l, mid, r) {
 
   while (i < left.length) {
     arr[k] = left[i];
-    bars[k].style.height = `${(left[i] / Math.max(...arr)) * 100}%`;
-    bars[k].style.backgroundColor = COLORS.active;
-    await delay(150);
-    bars[k].style.backgroundColor = COLORS.normal;
+    boxes[k].innerText = left[i];
+    boxes[k].style.backgroundColor = COLORS.active;
+    await new Promise(res => setTimeout(res, 150));
+    boxes[k].style.backgroundColor = COLORS.normal;
     i++;
     k++;
   }
 
   while (j < right.length) {
     arr[k] = right[j];
-    bars[k].style.height = `${(right[j] / Math.max(...arr)) * 100}%`;
-    bars[k].style.backgroundColor = COLORS.active;
-    await delay(150);
-    bars[k].style.backgroundColor = COLORS.normal;
+    boxes[k].innerText = right[j];
+    boxes[k].style.backgroundColor = COLORS.active;
+    await new Promise(res => setTimeout(res, 150));
+    boxes[k].style.backgroundColor = COLORS.normal;
     j++;
     k++;
   }
@@ -165,15 +159,16 @@ async function merge(arr, l, mid, r) {
 
 async function quickSort(arr, low, high) {
   if (low < high) {
-    const pi = await partition(arr, low, high);
-    await quickSort(arr, low, pi - 1);
-    await quickSort(arr, pi + 1, high);
+    const pivot = await partition(arr, low, high);
+    await quickSort(arr, low, pivot - 1);
+    await quickSort(arr, pivot + 1, high);
   }
 }
 
 async function partition(arr, low, high) {
-  let pivot = arr[high];
+  const pivot = arr[high];
   let i = low - 1;
+
   for (let j = low; j < high; j++) {
     if (arr[j] < pivot) {
       i++;
@@ -181,6 +176,7 @@ async function partition(arr, low, high) {
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
   }
+
   await swap(i + 1, high);
   [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
   return i + 1;
@@ -202,11 +198,16 @@ async function heapSort(arr) {
 
 async function heapify(arr, n, i) {
   let largest = i;
-  let l = 2 * i + 1;
-  let r = 2 * i + 2;
+  const left = 2 * i + 1;
+  const right = 2 * i + 2;
 
-  if (l < n && arr[l] > arr[largest]) largest = l;
-  if (r < n && arr[r] > arr[largest]) largest = r;
+  if (left < n && arr[left] > arr[largest]) {
+    largest = left;
+  }
+
+  if (right < n && arr[right] > arr[largest]) {
+    largest = right;
+  }
 
   if (largest !== i) {
     await swap(i, largest);

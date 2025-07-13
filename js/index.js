@@ -1,9 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("searchBtn").addEventListener("click", () => {
-    window.location.href = "search.html";
-  });
+  const searchBtn = document.getElementById("searchBtn");
+  const sortBtn = document.getElementById("sortBtn");
 
-  document.getElementById("sortBtn").addEventListener("click", () => {
-    window.location.href = "sort.html";
-  });
+  if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+      window.location.href = "search.html";
+    });
+  }
+
+  if (sortBtn) {
+    sortBtn.addEventListener("click", () => {
+      window.location.href = "sort.html";
+    });
+  }
 });

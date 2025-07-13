@@ -1,12 +1,13 @@
 .btn {
   padding: 1rem 2rem;
   background-color: #8A784E;
-  color: white;
-  font-weight: bold;
-  border-radius: 8px;
-  transition: 0.3s;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0.5rem;
   text-decoration: none;
+  transition: background-color 0.3s ease;
 }
+
 .btn:hover {
   background-color: #AEC8A4;
 }

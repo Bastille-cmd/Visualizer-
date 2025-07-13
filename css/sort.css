@@ -3,20 +3,20 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 1rem;
-  background-color: white;
-  border: 1px solid #ccc;
   min-height: 120px;
-  border-radius: 0.5rem;
   justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
 }
 
 .visual-box {
-  font-weight: bold;
   padding: 1rem;
   min-width: 40px;
   text-align: center;
+  font-weight: 600;
   border-radius: 0.5rem;
+  background-color: #AEC8A4;
+  color: #3B3B1A;
   transition: all 0.3s ease;
-  background-color: #aec8a4;
-  color: #3b3b1a;
 }

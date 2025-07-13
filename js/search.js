@@ -2,10 +2,10 @@ function renderArray(array) {
   const container = document.getElementById("visualizer");
   container.innerHTML = "";
 
-  array.forEach((num) => {
+  array.forEach(value => {
     const box = document.createElement("div");
     box.className = "box";
-    box.innerText = num;
+    box.innerText = value;
     container.appendChild(box);
   });
 }
@@ -19,15 +19,18 @@ function generateRandomArray() {
 function getInputArray() {
   const input = document.getElementById("arrayInput").value;
   if (!input) return [];
-  return input.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
+  return input.split(",").map(n => parseInt(n.trim())).filter(n => !isNaN(n));
 }
 
 async function startLinearSearch() {
   const array = getInputArray();
   const target = parseInt(document.getElementById("targetInput").value);
-  if (isNaN(target)) return alert("Enter a valid target number.");
-  renderArray(array);
+  if (isNaN(target)) {
+    alert("Enter a valid target number.");
+    return;
+  }
 
+  renderArray(array);
   const boxes = document.querySelectorAll(".box");
 
   for (let i = 0; i < array.length; i++) {
@@ -48,16 +51,20 @@ async function startLinearSearch() {
 async function startBinarySearch() {
   let array = getInputArray();
   const target = parseInt(document.getElementById("targetInput").value);
-  if (isNaN(target)) return alert("Enter a valid target number.");
+  if (isNaN(target)) {
+    alert("Enter a valid target number.");
+    return;
+  }
+
   array.sort((a, b) => a - b);
   renderArray(array);
-
   const boxes = document.querySelectorAll(".box");
-  let left = 0, right = array.length - 1;
+
+  let left = 0;
+  let right = array.length - 1;
 
   while (left <= right) {
     const mid = Math.floor((left + right) / 2);
-
     boxes[mid].style.backgroundColor = "#8A784E";
     await new Promise(res => setTimeout(res, 400));
 
@@ -85,15 +92,14 @@ function showTargetFound(value) {
   const box = document.createElement("div");
   box.className = "box";
   box.innerText = value;
-  box.style.backgroundColor = "#4CAF50"; // Green highlight for found
+  box.style.backgroundColor = "#4CAF50";
   box.style.transform = "scale(1.5)";
   box.style.margin = "auto";
 
   const message = document.createElement("div");
-  message.innerText = `Target ${value} found!`;
   message.className = "text-2xl font-semibold text-center mt-4";
+  message.innerText = `Target ${value} found!`;
 
   container.appendChild(box);
   container.appendChild(message);
 }
-

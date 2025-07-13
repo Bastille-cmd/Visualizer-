@@ -1,73 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sort Visualizer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              background: '#E7EFC7',
-              secondary: '#AEC8A4',
-              primary: '#8A784E',
-              textDark: '#3B3B1A',
-              success: '#4CAF50',
-            },
-          },
-        },
-      };
-    </script>
-    <link rel="stylesheet" href="css/sort.css" />
-  </head>
-  <body class="bg-background text-textDark min-h-screen p-6">
-    <!-- Back Button -->
-    <button
-      onclick="window.location.href='index.html'"
-      class="mb-6 px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition"
-    >
-      ← Back
-    </button>
+<head>
+  <meta charset="UTF-8" />
+  <title>Sort Visualizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#E7EFC7',
+            primary: '#8A784E',
+            secondary: '#AEC8A4',
+            textDark: '#3B3B1A',
+            success: '#4CAF50'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/sort.css" />
+</head>
+<body class="bg-background text-textDark min-h-screen p-6">
+  <button onclick="window.location.href='index.html'" class="mb-6 px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition">← Back</button>
 
-    <h1 class="text-3xl font-bold mb-4">Sort Visualizer</h1>
+  <h1 class="text-3xl font-bold mb-4">Sort Visualizer</h1>
 
-    <!-- Controls -->
-    <div class="space-y-4 mb-6">
-      <input
-        type="text"
-        id="arrayInput"
-        placeholder="Enter comma-separated numbers"
-        class="w-full p-2 rounded border border-gray-300"
-      />
-      <div class="flex gap-4">
-        <button
-          onclick="generateRandomArray()"
-          class="flex-1 bg-secondary text-white p-2 rounded hover:bg-primary transition"
-        >
-          Generate Random Array
-        </button>
-        <select id="algorithm" class="flex-1 p-2 rounded border border-gray-300">
-          <option value="bubble">Bubble Sort</option>
-          <option value="selection">Selection Sort</option>
-          <option value="insertion">Insertion Sort</option>
-          <option value="merge">Merge Sort</option>
-          <option value="quick">Quick Sort</option>
-          <option value="heap">Heap Sort</option>
-        </select>
-        <button
-          onclick="startSorting()"
-          class="flex-1 bg-primary text-white p-2 rounded hover:bg-secondary transition"
-        >
-          Start Sorting
-        </button>
-      </div>
+  <div class="space-y-4 mb-6">
+    <input type="text" id="arrayInput" placeholder="Enter comma-separated numbers" class="w-full p-2 rounded border border-gray-300" />
+
+    <div class="flex gap-4">
+      <button onclick="generateRandomArray()" class="flex-1 bg-secondary text-white p-2 rounded hover:bg-primary transition">Generate Random Array</button>
+
+      <select id="algorithm" class="flex-1 p-2 rounded border border-gray-300">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="insertion">Insertion Sort</option>
+        <option value="merge">Merge Sort</option>
+        <option value="quick">Quick Sort</option>
+        <option value="heap">Heap Sort</option>
+      </select>
+
+      <button onclick="startSorting()" class="flex-1 bg-primary text-white p-2 rounded hover:bg-secondary transition">Start Sorting</button>
     </div>
+  </div>
 
-    <!-- Visualizer -->
-    <div id="visualizer" class="visualizer-boxes"></div>
+  <div id="visualizer" class="visualizer-boxes"></div>
 
-    <script src="js/sort.js"></script>
-  </body>
+  <script src="js/sort.js"></script>
+</body>
 </html>
